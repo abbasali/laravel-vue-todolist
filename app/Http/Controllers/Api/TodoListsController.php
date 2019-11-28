@@ -33,4 +33,11 @@ class TodoListsController extends Controller
     {
         $todoList->delete();
     }
+
+    public function update(SaveTodoListRequest $request, TodoList $todoList)
+    {
+        $todoList->name = $request->name;
+        $todoList->save();
+        return new TodoListResource($todoList);
+    }
 }

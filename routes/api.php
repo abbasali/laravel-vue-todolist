@@ -23,4 +23,8 @@ Route::group([
     ],
     function () {
     Route::resource('todoLists', 'TodoListsController');
+
+    Route::resource('todos', 'TodosController');
+
+    Route::put('/todos/{todo}/toggle-complete', 'ToggleTodoCompleteController@update');
 });

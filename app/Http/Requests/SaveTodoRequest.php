@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SaveTodoListRequest extends FormRequest
+class SaveTodoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,10 +13,6 @@ class SaveTodoListRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->route('todoList')) {
-            return $this->route('todoList')->user_id === $this->user()->id;
-        }
-
         return true;
     }
 
@@ -28,7 +24,9 @@ class SaveTodoListRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'description' => 'required',
+            'list_id' => 'required',
+            'due_at' => 'nullable|date_format:Y-m-d H:i:s',
         ];
     }
 }
