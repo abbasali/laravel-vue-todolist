@@ -52927,8 +52927,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/abbas/Sites/laravel-vue-todo/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/abbas/Sites/laravel-vue-todo/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\laravel-vue-todolist\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-vue-todolist\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
