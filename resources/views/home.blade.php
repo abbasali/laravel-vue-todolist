@@ -116,6 +116,7 @@
                                             <input type="checkbox" class="ml-3"
                                             :checked="todo.completed_at"
                                             @click="toggleComplete(todo)">
+                                            <i class="fas fa-trash" @click="deleteTodo(todo.id)"></i>
                                         </span>
                                         </li>
                                     </ul>

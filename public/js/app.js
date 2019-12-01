@@ -52781,13 +52781,26 @@ var app = new Vue({
         });
       });
     },
-    toggleComplete: function toggleComplete(todo) {
+    deleteTodo: function deleteTodo(id) {
       var _this6 = this;
+
+      var del = confirm("Are you sure you want to remove this Todo");
+
+      if (del == true) {
+        axios["delete"]("/api/todos/".concat(id)).then(function (response) {
+          _this6.fetchTodos();
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    toggleComplete: function toggleComplete(todo) {
+      var _this7 = this;
 
       axios.put("/api/todos/".concat(todo.id, "/toggle-complete")).then(function (response) {
         todo.completed_at = response.data.data.completed_at;
 
-        _this6.fetchTodos();
+        _this7.fetchTodos();
       });
     }
   }

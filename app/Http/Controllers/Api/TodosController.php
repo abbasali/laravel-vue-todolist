@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TodoResource;
 use App\Http\Requests\SaveTodoRequest;
+use App\Http\Requests\DeleteTodoRequest;
 
 class TodosController extends Controller
 {
@@ -32,5 +33,21 @@ class TodosController extends Controller
             ->get();
 
         return TodoResource::collection($todos);
+    }
+
+    public function destroy(Todo $todo, DeleteTodoRequest $request)
+    {
+        try {
+            if ($todo->delete()) {
+                $todos = Todo::where('user_id', $request->user()->id)
+                ->orderBy(DB::raw('completed_at IS NULL'), 'desc')
+                ->orderBy('completed_at', 'desc')
+                ->get();
+
+                return TodoResource::collection($todos);
+            }
+        } catch (Exception $e) {
+            return response()->json($e->getMessage(), 401);
+        }
     }
 }

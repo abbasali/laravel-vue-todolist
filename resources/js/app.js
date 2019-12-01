@@ -173,6 +173,18 @@ const app = new Vue({
             });
         },
 
+        deleteTodo(id) {
+            let del = confirm("Are you sure you want to remove this Todo");
+            if (del == true) {
+                axios.delete(`/api/todos/${id}`)
+                .then(response => {
+                    this.fetchTodos();
+                }).catch((error) => {
+                    console.log(error);
+                })
+            }
+        },
+
         toggleComplete(todo) {
             axios.put(`/api/todos/${todo.id}/toggle-complete`)
                 .then(response => {
