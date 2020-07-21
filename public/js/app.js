@@ -52781,13 +52781,26 @@ var app = new Vue({
         });
       });
     },
-    toggleComplete: function toggleComplete(todo) {
+    deleteTodo: function deleteTodo(id) {
       var _this6 = this;
+
+      var del = confirm("Are you sure you want to remove this Todo");
+
+      if (del == true) {
+        axios["delete"]("/api/todos/".concat(id)).then(function (response) {
+          _this6.fetchTodos();
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    toggleComplete: function toggleComplete(todo) {
+      var _this7 = this;
 
       axios.put("/api/todos/".concat(todo.id, "/toggle-complete")).then(function (response) {
         todo.completed_at = response.data.data.completed_at;
 
-        _this6.fetchTodos();
+        _this7.fetchTodos();
       });
     }
   }
@@ -52927,8 +52940,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/abbas/Sites/laravel-vue-todo/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/abbas/Sites/laravel-vue-todo/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\laravel-vue-todolist\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-vue-todolist\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
